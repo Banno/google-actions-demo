@@ -1,0 +1,17 @@
+conditionalEvents:
+- condition: user.accountLinkingStatus == "NOT_LINKED"
+  transitionToScene: account_linking
+- condition: scene.slots.status == "FINAL"
+  handler:
+    webhookHandler: current_balance
+  transitionToScene: actions.scene.END_CONVERSATION
+slots:
+- commitBehavior:
+    writeSessionParam: account_name
+  name: selected_account_name
+  promptSettings:
+    initialPrompt:
+      webhookHandler: load_accounts
+  required: true
+  type:
+    name: account_name

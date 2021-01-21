@@ -1,0 +1,16 @@
+conditionalEvents:
+- condition: user.accountLinkingStatus == "NOT_LINKED" && user.verificationStatus
+    == "VERIFIED"
+  transitionToScene: account_linking
+- condition: user.accountLinkingStatus == "LINKED" && user.verificationStatus == "VERIFIED"
+  transitionToScene: select_account
+- condition: user.verificationStatus == "UNVERIFIED"
+  handler:
+    staticPrompt:
+      candidates:
+      - promptResponse:
+          firstSimple:
+            variants:
+            - speech: I don't recognize your voice. I can only give personalized data
+                to registered users.
+  transitionToScene: actions.scene.END_CONVERSATION

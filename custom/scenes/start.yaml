@@ -1,0 +1,22 @@
+intentEvents:
+- intent: account_balance
+  transitionToScene: account_balance
+- handler:
+    staticPrompt:
+      candidates:
+      - promptResponse:
+          firstSimple:
+            variants:
+            - speech: Goodbye.
+  intent: done
+  transitionToScene: actions.scene.END_CONVERSATION
+onEnter:
+  staticPrompt:
+    candidates:
+    - promptResponse:
+        firstSimple:
+          variants:
+          - speech: What would you like to know? I can answer questions about account
+              balances.
+        suggestions:
+        - title: Account balance

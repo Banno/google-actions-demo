@@ -1,0 +1,15 @@
+accountLinking:
+  appClientId: OAUTH_CLIENT_ID_FROM_BANNO_PEOPLE
+  authGrantType: AUTH_CODE
+  authorizationUrl: https://BANNO_ONLINE_DOMAIN/a/consumer/api/v0/oidc/auth
+  linkingType: OAUTH
+  scopes:
+  - openid
+  - profile
+  - https://api.banno.com/consumer/auth/offline_access
+  tokenUrl: https://BANNO_ONLINE_DOMAIN/a/consumer/api/v0/oidc/token
+category: BUSINESS_AND_FINANCE
+defaultLocale: en
+enabledRegions:
+- United States
+projectId: PROJECT-ID-FROM-GOOGLE
