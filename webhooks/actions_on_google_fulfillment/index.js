@@ -185,7 +185,7 @@ app.handle('select_account', async (conv) => {
       listItems.push({key: accountId});
     });
 
-    // Override prompt_option Type with display
+    // Override account_name Type with display
     conv.session.typeOverrides = conv.session.typeOverrides || [];
     conv.session.typeOverrides.push({
       name: 'account_name',
