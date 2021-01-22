@@ -1,0 +1,5 @@
+conditionalEvents:
+- condition: size(session.params.accounts) > 0
+  handler:
+    webhookHandler: current_balance
+  transitionToScene: another_account

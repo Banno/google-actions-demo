@@ -1,0 +1,16 @@
+conditionalEvents:
+- condition: size(session.params.accounts) > 0
+  transitionToScene: select_account
+- condition: size(session.params.accounts) == 0
+  handler:
+    staticPrompt:
+      candidates:
+        - promptResponse:
+            firstSimple:
+              variants:
+                - speech: I was not able to find any accounts for you.
+  transitionToScene: actions.scene.END_CONVERSATION
+- condition: "!(\"accounts\" in session.params)"
+  handler:
+    webhookHandler: load_accounts
+  transitionToScene: select_account

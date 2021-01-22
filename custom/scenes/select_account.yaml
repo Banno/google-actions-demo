@@ -1,17 +1,17 @@
 conditionalEvents:
 - condition: scene.slots.status == "FINAL"
-  handler:
-    webhookHandler: current_balance
-  transitionToScene: another_account
+  transitionToScene: display_account_balance
 - condition: user.accountLinkingStatus == "NOT_LINKED"
   transitionToScene: account_linking
+- condition: size(session.params.accounts) == 1
+  transitionToScene: display_account_balance
 slots:
 - commitBehavior:
     writeSessionParam: account_name
   name: selected_account_name
   promptSettings:
     initialPrompt:
-      webhookHandler: load_accounts
+      webhookHandler: select_account
   required: true
   type:
     name: account_name

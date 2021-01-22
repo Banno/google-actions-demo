@@ -1,6 +1,8 @@
 conditionalEvents:
 - condition: session.params.AccountLinkingSlot == "LINKED"
-  transitionToScene: select_account
+  handler:
+    webhookHandler: create_user
+  transitionToScene: load_accounts
 - condition: session.params.AccountLinkingSlot == "ERROR"
   handler:
     staticPrompt:
@@ -24,11 +26,12 @@ conditionalEvents:
 slots:
 - commitBehavior:
     writeSessionParam: AccountLinkingSlot
+  promptSettings:
+    initialPrompt:
+      webhookHandler: create_user
   config:
     '@type': type.googleapis.com/google.actions.conversation.v3.SignInSpec
     opt_context: To retrieve your financial information
-  defaultValue:
-    sessionParam: AccountLinkingSlot
   name: AccountLinkingSlot
   required: true
   type:

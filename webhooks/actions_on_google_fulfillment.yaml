@@ -2,5 +2,7 @@ handlers:
 - name: current_balance
 - name: system_error
 - name: load_accounts
+- name: select_account
+- name: create_user
 inlineCloudFunction:
   executeFunction: ActionsOnGoogleFulfillment
