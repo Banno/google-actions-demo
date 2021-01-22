@@ -1,2 +1,3 @@
 custom:
+  account_balance: {}
   actions.intent.MAIN: {}

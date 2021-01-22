@@ -1,0 +1,15 @@
+intentEvents:
+- intent: "yes"
+  transitionToScene: select_account
+- intent: "no"
+  transitionToScene: actions.scene.END_CONVERSATION
+onEnter:
+  staticPrompt:
+    candidates:
+    - promptResponse:
+        firstSimple:
+          variants:
+          - speech: Would you like to get the balance on another account?
+        suggestions:
+        - title: "Yes"
+        - title: "No"

@@ -1,10 +1,10 @@
 conditionalEvents:
-- condition: user.accountLinkingStatus == "NOT_LINKED"
-  transitionToScene: account_linking
 - condition: scene.slots.status == "FINAL"
   handler:
     webhookHandler: current_balance
-  transitionToScene: actions.scene.END_CONVERSATION
+  transitionToScene: another_account
+- condition: user.accountLinkingStatus == "NOT_LINKED"
+  transitionToScene: account_linking
 slots:
 - commitBehavior:
     writeSessionParam: account_name

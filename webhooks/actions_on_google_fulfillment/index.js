@@ -65,19 +65,6 @@ function sortOrderFromAccountType(accountType) {
   }
 }
 
-
-
-// This handler is called after the user has successfully linked their account.
-// Saves the user name in a session param to use it in dialogs, and inits the
-// Firestore db to store orders for the user.
-app.handle('create_user', async (conv) => {
-  const payload = conv.user.params.tokenPayload;
-  logData('create_user', payload);
-  conv.user.params.name = payload.name;
-  conv.user.params.given_name = payload.given_name;
-  conv.user.params.userId = payload.sub;
-});
-
 const transparentImage = new Image({
   url: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
   alt: '',
@@ -86,7 +73,7 @@ const transparentImage = new Image({
 });
 app.handle('load_accounts', async (conv) => {
   if (!conv.user || !conv.user.params.bearerToken) {
-    conv.scene.next = 'select_account';
+    conv.scene.next = 'account_linking';
     return;
   }
 
@@ -226,6 +213,10 @@ app.handle('current_balance', async (conv) => {
     conv.add(`Your ${account.name} account has ${balanceLabel} balance of ${formattedBalance}.`);
   } else {
     conv.add('Oops something went wrong. Please try again.');
+  }
+
+  if (conv.session.params.accounts.length === 1) {
+    conv.scene.next = 'actions.scene.END_CONVERSATION';
   }
 });
 

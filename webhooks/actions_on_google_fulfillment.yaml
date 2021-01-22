@@ -1,6 +1,5 @@
 handlers:
 - name: current_balance
-- name: create_user
 - name: system_error
 - name: load_accounts
 inlineCloudFunction:
