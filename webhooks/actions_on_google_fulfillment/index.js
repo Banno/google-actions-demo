@@ -177,7 +177,7 @@ app.handle('select_account', async (conv) => {
         name: accountId,
         synonyms: [accountId, acct.name],
         display: {
-          title: acct.name,
+          title: acct.name.replace(/\s0+/g, ' 0').replace(/\s+/g, ' '),
           description: `${acct.type} Account`,
           image: transparentImage
         }
