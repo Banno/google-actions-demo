@@ -15,5 +15,5 @@ conditionalEvents:
             - speech: I don't recognize your voice. I can only give personalized data
                 to registered users.
   transitionToScene: actions.scene.END_CONVERSATION
-- condition: "!(\"bearerToken\" in user.params)"
+- condition: '!("bearerToken" in user.params)'
   transitionToScene: account_linking

@@ -26,13 +26,13 @@ conditionalEvents:
 slots:
 - commitBehavior:
     writeSessionParam: AccountLinkingSlot
-  promptSettings:
-    initialPrompt:
-      webhookHandler: create_user
   config:
     '@type': type.googleapis.com/google.actions.conversation.v3.SignInSpec
     opt_context: To retrieve your financial information
   name: AccountLinkingSlot
+  promptSettings:
+    initialPrompt:
+      webhookHandler: create_user
   required: true
   type:
     name: actions.type.AccountLinking

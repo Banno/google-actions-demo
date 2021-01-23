@@ -5,12 +5,12 @@ conditionalEvents:
   handler:
     staticPrompt:
       candidates:
-        - promptResponse:
-            firstSimple:
-              variants:
-                - speech: I was not able to find any accounts for you.
+      - promptResponse:
+          firstSimple:
+            variants:
+            - speech: I was not able to find any accounts for you.
   transitionToScene: actions.scene.END_CONVERSATION
-- condition: "!(\"accounts\" in session.params)"
+- condition: '!("accounts" in session.params)'
   handler:
     webhookHandler: load_accounts
   transitionToScene: select_account
