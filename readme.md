@@ -5,8 +5,7 @@ ask questions about their account balances.
 
 This is designed as a basic demonstration utilizing Banno's Consumer API.
 
-[![Demonstration Video](http://img.youtube.com/vi/h4GPSPDp6Rc/0.jpg)](http://www.youtube.com/watch?v=h4GPSPDp6Rc "Google Actions Demo - Garden Bank
-e")
+[![Demonstration Video](http://img.youtube.com/vi/e6pue3O0Ovg/0.jpg)](http://www.youtube.com/watch?v=e6pue3O0Ovg "Google Actions Demo - Garden Bank")
 
 ## Getting this project up and running for your institution
 
