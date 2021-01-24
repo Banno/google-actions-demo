@@ -131,14 +131,13 @@ app.handle('load_accounts', async (conv) => {
             !acct.hidden &&
             acct.contributesToAggregateTotals)
         .sort((a, b) => {
-          const si = compareSortIndexes(a, b);
-          if (si !== 0) {
-            return si;
-          }
-
           // short circuit equality comparison
           if (a.id !== undefined && a.id !== null && a.id === b.id) {
             return 0;
+          }
+          const si = compareSortIndexes(a, b);
+          if (si !== 0) {
+            return si;
           }
 
           const t = sortOrderFromAccountType(a.accountType) - sortOrderFromAccountType(b.accountType);
@@ -172,12 +171,19 @@ app.handle('select_account', async (conv) => {
     const typeDataEntries = [];
     const listItems = [];
     conv.session.params.accounts.forEach((acct, index) => {
-      let accountId = `ACCOUNT_${acct.id.replace(/-/g, '_')}`;
+      const accountId = `ACCOUNT_${acct.id.replace(/-/g, '_')}`;
+      const accountName = acct.name.replace(/\s+/, ' '); // Account names can have lots of extra whitespace
+      const accountNames = new Set([accountId, accountName]);
+
+      // Account names can have lots of leading zeros
+      accountNames.add(accountName.replace(/\s0+/g, ' 0'));
+      accountNames.add(accountName.replace(/\s0+(\d)/g, ' $1'));
+
       typeDataEntries.push({
         name: accountId,
-        synonyms: [accountId, acct.name],
+        synonyms: Array.from(accountNames),
         display: {
-          title: acct.name.replace(/\s0+/g, ' 0').replace(/\s+/g, ' '),
+          title: accountName,
           description: `${acct.type} Account`,
           image: transparentImage
         }
@@ -196,10 +202,12 @@ app.handle('select_account', async (conv) => {
     });
 
     conv.add(`Looks like you have ${conv.session.params.accounts.length} accounts. Which one are you interested in?`);
-    conv.add(new List({
-      title: `${conv.session.params.userInfo.name}'s Accounts`,
-      items: listItems
-    }));
+    if (conv.session.params.accounts.length < 30) {
+      conv.add(new List({
+        title: `${conv.session.params.userInfo.name}'s Accounts`,
+        items: listItems
+      }));
+    }
   }
 });
 
