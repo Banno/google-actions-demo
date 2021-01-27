@@ -7,6 +7,7 @@ accountLinking:
   - openid
   - profile
   - https://api.banno.com/consumer/auth/offline_access
+  - https://api.banno.com/consumer/auth/accounts.readonly
   tokenUrl: https://BANNO_ONLINE_DOMAIN/a/consumer/api/v0/oidc/token
 category: BUSINESS_AND_FINANCE
 defaultLocale: en
