@@ -23,6 +23,7 @@ Make sure to reference the [Google Actions Builder documentation](https://develo
      This is configured in the "Settings" area under "External Applications".
      - Name the application "Google"
      - Create a "Confidential" client
+     - Make sure the "PKCE required" box is unchecked. Google Assistant does not support PKCE.
      - Ensure the "User consent required" option is selected
      - Add 2 redirect uris utilizing the project id from step 4:
        1. https://oauth-redirect.googleusercontent.com/r/PROJECT-ID
